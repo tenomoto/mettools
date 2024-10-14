@@ -7,9 +7,9 @@
 rh2q(rh, T, p)
 }
 \arguments{
-\item{rh}{relative humidity %}
+\item{rh}{relative humidity percent}
 
-\item{T}{temperature}
+\item{T}{temperature K}
 
 \item{p}{pressure Pa}
 }

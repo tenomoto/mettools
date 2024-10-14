@@ -1,8 +1,7 @@
-eps <- 0.622
-
 #' vapour pressure to specific humidity
 #'
 #' Convert vapour pressure to specific humidity
+#'
 #' @param e vapour pressure Pa| hPa
 #' @param p air pressure Pa | hPa (must be consistent with e)
 #' @return specific humidity kg/kg
@@ -11,12 +10,14 @@ eps <- 0.622
 #' q <- e2q(20e2, 1000e2)
 #' @export
 e2q <- function (e, p) {
+  eps <- physcon$eps
   eps*e/(p-(1.0-eps)*e)
 }
 
 #' specific humidity to vapour pressure
 #'
 #' Convert specific humidity vapour pressure
+#'
 #' @param q specific humidity kg/kg
 #' @param p air pressure Pa | hPa
 #' @return vapour pressure in the same unit as p
@@ -25,12 +26,14 @@ e2q <- function (e, p) {
 #' e.Pa <- q2e(0.01, 1000e2)
 #' @export
 q2e <- function(q, p) {
+  eps <- physcon$eps
 	p*q/(eps+(1.-eps)*q)
 }
 
 #' vapour pressure to mixing ratio
 #'
 #' Convert vapour pressure to mixing ratio
+#'
 #' @param e vapour pressure Pa| hPa
 #' @param p air pressure Pa | hPa (must be consistent with e)
 #' @return mixing ratio kg/kg
@@ -39,6 +42,7 @@ q2e <- function(q, p) {
 #' q <- e2w(20e2, 1000e2)
 #' @export
 e2w <- function(e, p) {
+  eps <- physcon$eps
 	eps*e/(p-e)
 }
 
@@ -46,6 +50,7 @@ e2w <- function(e, p) {
 #'
 #' Calculate saturation vapour pressure
 #'     based on the formula used by WMO and JMA
+#'
 #' @param T temperature
 #' @return saturation vapour pressure Pa
 #' @examples
@@ -59,6 +64,7 @@ calc.es <- function(T) {
 #'
 #' Calculate dew point temperature
 #'     Bolton (1980)
+#'
 #' @param T temperature
 #' @param e vapour pressure Pa
 #' @return condensation temperature K
@@ -72,6 +78,7 @@ calc.condtemp <- function (T, e){
 #' dew point depression to specific humidity
 #'
 #' Calculate specific humidity from dew point depression
+#'
 #' @param ttd dew point depression (T - Td)
 #' @param T temperature
 #' @param p pressure Pa
@@ -86,8 +93,9 @@ ttd2q <- function(ttd, T, p) {
 #' relative humidity to specific humidity
 #'
 #' Calculate specific humidity from relative humidity
-#' @param rh relative humidity %
-#' @param T temperature
+#'
+#' @param rh relative humidity percent
+#' @param T temperature K
 #' @param p pressure Pa
 #' @return specific humidity kg/kg
 #' @examples
@@ -100,8 +108,9 @@ rh2q <- function (rh, T, p) {
 #' specific humidity to dew point depression
 #'
 #' Calculate dew point depression from specific humidity
+#'
 #' @param q specific humidity kg/kg
-#' @param T temperature
+#' @param T temperature K
 #' @param p pressure Pa
 #' @return dew point depression K
 #' @examples
@@ -116,7 +125,8 @@ q2ttd <- function(q, T, p) {
 #'
 #' Calculate potential temperature
 #'     Bolton (1980)
-#' @param T temperature
+#'
+#' @param T temperature K
 #' @param w mixing ratio kg/kg
 #' @param p pressure Pa
 #' @return potential temperature K
@@ -132,6 +142,7 @@ calc.theta <- function (T, w, p) {
 #'
 #' Calculate equivalent potential temperature
 #'     Bolton (1980)
+#'
 #' @param T temperature K
 #' @param e vapour pressure Pa
 #' @param p pressure Pa
@@ -149,6 +160,7 @@ calc.thetae <- function (T, e, p) {
 
 #' Calculate saturated equivalent potential temperature
 #'     Bolton (1980)
+#'
 #' @param T temperature K
 #' @param p pressure Pa
 #' @return saturated equivalent potential temperature K
@@ -156,8 +168,6 @@ calc.thetae <- function (T, e, p) {
 #' thetaes <- calc.thetaes(300, 1000e2)
 #' @export
 calc.thetaes <- function(T, p) {
-# Bolton (1980)
-# T(K), e=es(T)(Pa), p(Pa)
 	es <- calc.es(T)
 	w <- e2w(es,p)
 	calc.theta(T, w, p) * exp((3376.0/T-2.54)*w*(1.0+0.81*w))

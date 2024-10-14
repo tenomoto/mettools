@@ -7,7 +7,7 @@
 calc.theta(T, w, p)
 }
 \arguments{
-\item{T}{temperature}
+\item{T}{temperature K}
 
 \item{w}{mixing ratio kg/kg}
 

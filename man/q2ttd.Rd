@@ -9,7 +9,7 @@ q2ttd(q, T, p)
 \arguments{
 \item{q}{specific humidity kg/kg}
 
-\item{T}{temperature}
+\item{T}{temperature K}
 
 \item{p}{pressure Pa}
 }
