@@ -65,9 +65,9 @@ library(jsonlite)
 #' generate AMeDAS station list in a data.frame
 #' @return df
 #' @examples
-#' df <- amedas.stationlist()
+#' df <- amedas.stations()
 #' @export
-amedas.station.list <- function() {
+amedas.stations <- function() {
   url <- "https://www.jma.go.jp/bosai/amedas/const/amedastable.json"
   json <- fromJSON(url)
   station.id <- names(json)
