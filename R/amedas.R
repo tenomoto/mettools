@@ -47,3 +47,38 @@ dir2deg <- function(x) {
   dir[x]
 }
 
+deg2decimal <- function(d) {
+  dmat <- matrix(d, ncol = 2)
+  dmat[, 1] + dmat[, 2] / 60
+}
+
+dec.lonlat <- function(lst) {
+  lst$lon <- deg2decimal(lst$lon)
+  lst$lat <- deg2decimal(lst$lat)
+  lst
+}
+
+library(jsonlite)
+
+#' generate AMeDAS station list in a data.frame
+#'
+#' generate AMeDAS station list in a data.frame
+#' @return df
+#' @examples
+#' df <- amedas.stationlist()
+#' @export
+amedas.station.list <- function() {
+  url <- "https://www.jma.go.jp/bosai/amedas/const/amedastable.json"
+  json <- fromJSON(url)
+  station.id <- names(json)
+  df <- data.frame(matrix(ncol = 6, nrow = 0))
+  cn <- c("lat", "lon", "alt", "kjName", "knName", "enName")
+  colnames(df) <- c(cn)
+  for (id in station.id) {
+    stn <- dec.lonlat(json[[id]])
+    df <- rbind(df, stn[cn])
+  }
+  rownames(df) <- station.id
+  df
+}
+
