@@ -69,10 +69,10 @@ library(jsonlite)
 #' @export
 amedas.stations <- function() {
   url <- "https://www.jma.go.jp/bosai/amedas/const/amedastable.json"
+  cn <- c("type", "elems", "lat", "lon", "alt", "kjName", "knName", "enName")
   json <- fromJSON(url)
   station.id <- names(json)
-  df <- data.frame(matrix(ncol = 6, nrow = 0))
-  cn <- c("lat", "lon", "alt", "kjName", "knName", "enName")
+  df <- data.frame(matrix(ncol = length(cn), nrow = 0))
   colnames(df) <- c(cn)
   for (id in station.id) {
     stn <- dec.lonlat(json[[id]])
