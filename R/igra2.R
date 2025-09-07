@@ -8,7 +8,7 @@ igra2_url <- "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archiv
 #' stations <- igra2_stations()
 #' @export
 igra2_stations <- function() {
-  url <- paste(igra2_url, "doc/igra2-station-list.txt")
+  url <- paste0(igra2_url, "doc/igra2-station-list.txt")
   station_colnames <- c("id", "latitude", "longitude", "elevation",
                         "state", "name", "fstyear", "lstyear", "nobs")
   read.fwf(url, c(11, 9, 10, 7, 3, 31, 5, 5, 7),
