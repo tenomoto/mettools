@@ -61,13 +61,7 @@ decode_data <- function(data) {
     landfall = ifelse(p == "#", TRUE, FALSE))
 }
 
-rsmc_tokyo_bst <- function(destfile = NA) {
-  txtfile <- "bst_all.txt"
-  url <- "https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/Besttracks/bst_all.zip"
-  zipfile <- tempfile()
-  download.file(url, zipfile, mode = "wb")
-  con <- unz(zipfile, txtfile)
-  on.exit(close(con))
+decode_bst <- function(con) {
   lines <- readLines(con)
   header_lineno <- which(substr(lines, 1, 5) == "66666")
   headers <- lines[header_lineno]
@@ -83,6 +77,17 @@ rsmc_tokyo_bst <- function(destfile = NA) {
     tc_list[[header$intl_id]] <- df
   }
   tc_list
+}
+
+rsmc_tokyo_bst <- function(destfile = NA) {
+  txtfile <- "bst_all.txt"
+  url <- "https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/Besttracks/bst_all.zip"
+  zipfile <- tempfile()
+  download.file(url, zipfile, mode = "wb")
+  if (! is.na(destfile)) file.copy(zipfile, destfile)
+  con <- unz(zipfile, txtfile)
+  on.exit(close(con))
+  decode_bst(con)
 }
 
 
