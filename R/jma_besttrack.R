@@ -68,13 +68,15 @@ decode_bst <- function(con) {
   tc_list <- list()
   for (i in 1:length(header_lineno)) {
     header <- decode_header(headers[i])
+    intl_id <- as.character(header$intl_id)
     ls <- header_lineno[i] + 1
     le <- header_lineno[i] + header$n_data_lines
     if (le > ls) {
       data <- lines[ls:le]
       df <- decode_data(data)
+      df$intl_id <- intl_id
     }
-    tc_list[[header$intl_id]] <- df
+    tc_list[[intl_id]] <- df
   }
   tc_list
 }
