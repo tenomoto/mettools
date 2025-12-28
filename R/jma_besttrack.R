@@ -7,7 +7,7 @@ decode_header <- function(header) {
   h_h <- substr(header, 31, 50)
   i_i <- substr(header, 65, 72)
   list(
-    intl_id = as.integer(bbbb),
+    intl_id = bbbb,
     n_data_lines = as.integer(ccc),
     tc_id= as.integer(dddd),
     flag = as.integer(f),
