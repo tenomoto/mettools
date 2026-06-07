@@ -1,3 +1,10 @@
+#' Decode RSMC Tokyo Best Track Header Line
+#'
+#' Parses a single header line from the JMA Best Track data into a structured list of metadata.
+#'
+#' @param header A character string containing a header line (starting with "66666").
+#' @return A list containing the international ID, number of data lines, tropical cyclone ID, flags, name, and date.
+#' @keywords internal
 decode_header <- function(header) {
   bbbb <- substr(header, 7, 10)
   ccc <- substr(header, 13, 15)
@@ -16,6 +23,13 @@ decode_header <- function(header) {
     i_i = as.Date(i_i, format = "%y%m%d"))
 }
 
+#' Decode RSMC Tokyo Best Track Data Lines
+#'
+#' Parses a character vector of best track data lines into a data frame containing storm track details.
+#'
+#' @param data A character vector where each element is a data line for a specific tropical cyclone.
+#' @return A data frame containing parsed track data, including time, location, intensity, and wind radii.
+#' @keywords internal
 decode_data <- function(data) {
   cat2str <- c(NA, "TD", "TS", "STS", "TY", "L", "R", "TTC", NA, ">TS")
   int2dir <- c("NO", "NE", "E", "SE", "S", "SW", "W", "NW", "N", "SYM")
@@ -51,16 +65,23 @@ decode_data <- function(data) {
     r50l = as.integer(iiii),
     r50l_km = as.integer(iiii) * nm2km,
     r50s = as.integer(jjjj),
-    r50s_km = as.integer(iiii) * nm2km,
+    r50s_km = as.integer(jjjj) * nm2km,
     dir30 = int2dir[as.integer(k) + 1],
     dir30_deg = dir2deg8[as.integer(k) + 1],
     r30l = as.integer(llll),
     r30l_km = as.integer(llll) * nm2km,
     r30s = as.integer(mmmm),
-    r30s_km = as.integer(llll) * nm2km,
+    r30s_km = as.integer(mmmm) * nm2km,
     landfall = ifelse(p == "#", TRUE, FALSE))
 }
 
+#' Decode JMA Best Track Connection
+#'
+#' Reads and parses the text connection extracted from the Best Track zip file.
+#'
+#' @param con A connection to the extracted text file.
+#' @return A named list of data frames, where each element contains track data for a tropical cyclone, indexed by its international ID.
+#' @keywords internal
 decode_bst <- function(con) {
   lines <- readLines(con)
   header_lineno <- which(substr(lines, 1, 5) == "66666")
@@ -81,6 +102,22 @@ decode_bst <- function(con) {
   tc_list
 }
 
+#' Fetch and Parse RSMC Tokyo Best Track Data
+#'
+#' Downloads the complete Best Track dataset (`bst_all.zip`) from the Japan Meteorological Agency (JMA),
+#' extracts the text file, and parses it into a structured list of data frames for all available storms.
+#'
+#' @param destfile An optional character string specifying where to save the downloaded zip file. If `NA` (default), the file is not saved permanently.
+#' @return A named list of data frames containing track data for all available tropical cyclones.
+#' @export
+#' @examples
+#' \dontrun{
+#'   # Download and parse all JMA best track data
+#'   tc_data <- rsmc_tokyo_bst()
+#'   
+#'   # Download, parse, and save a copy of the zip file locally
+#'   tc_data <- rsmc_tokyo_bst(destfile = "data/jma_bst.zip")
+#' }
 rsmc_tokyo_bst <- function(destfile = NA) {
   txtfile <- "bst_all.txt"
   url <- "https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/Besttracks/bst_all.zip"
@@ -91,5 +128,4 @@ rsmc_tokyo_bst <- function(destfile = NA) {
   on.exit(close(con))
   decode_bst(con)
 }
-
 
