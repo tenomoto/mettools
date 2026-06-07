@@ -15,6 +15,9 @@
 #'   \item{water.rv}{gas constant of water vapour, J/deg/kg}
 #'   \item{water.lv0}{latent heat of vapouriztion at 0C , J/kg}
 #'   \item{water.eps}{ration of gas constant of dry air to that of water vapour}
+#'   \item{earth.grav}{acceleration due to gravity, m/s^2}
+#'   \item{earth.dayinsec}{length of a day, seconds}
+#'   \item{earth.omega}{angular velocity of the Earth, rad/s}
 #' }
 #' @source{Wallace and Hobbs (2006)}
 #'
