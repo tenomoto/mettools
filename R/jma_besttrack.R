@@ -122,7 +122,7 @@ rsmc_tokyo_bst <- function(destfile = NA) {
   txtfile <- "bst_all.txt"
   url <- "https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/Besttracks/bst_all.zip"
   zipfile <- tempfile()
-  download.file(url, zipfile, mode = "wb")
+  utils::download.file(url, zipfile, mode = "wb")
   if (! is.na(destfile)) file.copy(zipfile, destfile)
   con <- unz(zipfile, txtfile)
   on.exit(close(con))
