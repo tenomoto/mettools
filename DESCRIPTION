@@ -1,7 +1,7 @@
 Package: mettools
 Type: Package
 Title: Meteorological Analysis Tools
-Version: 0.2.0
+Version: 0.2.1
 Author: Takeshi Enomoto
 Maintainer: Takeshi Enomoto <takeshi.enomoto@gmail.com>
 Description: mettools contains a collection of functions that useful for meteorological analysis.
