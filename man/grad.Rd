@@ -11,10 +11,10 @@ grad(f, hx, hy = hx, cyclic = FALSE)
 
 \item{hx}{A numeric scalar representing the grid spacing in the x-direction.}
 
-\item{hy}{A numeric scalar representing the grid spacing in the y-direction. 
+\item{hy}{A numeric scalar representing the grid spacing in the y-direction.
 Defaults to \code{hx}.}
 
-\item{cyclic}{A logical scalar. Set to \code{TRUE} if the field domain wraps periodically. 
+\item{cyclic}{A logical scalar. Set to \code{TRUE} if the field domain wraps periodically.
 Defaults to \code{FALSE}.}
 }
 \value{
@@ -23,7 +23,7 @@ A named list containing two matrices of the same size as \code{f}:
 \item{dy}{The partial derivative with respect to y (\code{df/dy}).}
 }
 \description{
-Evaluates both components of a 2D spatial gradient vector 
-\eqn{\nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\right)} 
+Evaluates both components of a 2D spatial gradient vector
+\eqn{\nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\right)}
 using uniform second-order accurate schemes.
 }

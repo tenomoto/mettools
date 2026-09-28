@@ -14,7 +14,7 @@ saturation vapour pressure Pa
 }
 \description{
 Calculate saturation vapour pressure
-    based on the formula used by WMO and JMA
+based on the formula used by WMO and JMA
 }
 \examples{
 es <- calc.es(300)

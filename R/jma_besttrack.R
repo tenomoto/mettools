@@ -81,7 +81,20 @@ decode_data <- function(data) {
 #'
 #' @param con A connection to the extracted text file.
 #' @return A named list of data frames, where each element contains track data for a tropical cyclone, indexed by its international ID.
-#' @keywords internal
+#' @export
+#' @examples
+#' \dontrun{
+#' con <- file("bst2026.txt", open = "r", encoding = "Shift-JIS")
+#' bst_data <- decode_bst(con)
+#' close(con)
+#' 
+#' if (file.exists("bst2026.txt")) {
+#'   con <- file("bst2026.txt", open = "r", encoding = "Shift-JIS")
+#'   bst_data <- decode_bst(con)
+#'   close(con)
+#'   summary(bst_data)
+#' }
+#' }
 decode_bst <- function(con) {
   lines <- readLines(con)
   header_lineno <- which(substr(lines, 1, 5) == "66666")

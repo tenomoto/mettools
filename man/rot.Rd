@@ -13,18 +13,18 @@ rot(u, v, hx, hy = hx, cyclic = FALSE)
 
 \item{hx}{A numeric scalar representing the grid spacing in the x-direction.}
 
-\item{hy}{A numeric scalar representing the grid spacing in the y-direction. 
+\item{hy}{A numeric scalar representing the grid spacing in the y-direction.
 Defaults to \code{hx}.}
 
-\item{cyclic}{A logical scalar. Set to \code{TRUE} if the field domain wraps periodically. 
+\item{cyclic}{A logical scalar. Set to \code{TRUE} if the field domain wraps periodically.
 Defaults to \code{FALSE}.}
 }
 \value{
-A numeric matrix matching the input vector grid dimensions containing the 
-  computed scalar rotation.
+A numeric matrix matching the input vector grid dimensions containing the
+computed scalar rotation.
 }
 \description{
-Evaluates the scalar 2D curl / vertical vorticity field 
-\eqn{\zeta = \frac{\partial v}{\partial x} - \frac{\partial u}{\partial y}} 
+Evaluates the scalar 2D curl / vertical vorticity field
+\eqn{\zeta = \frac{\partial v}{\partial x} - \frac{\partial u}{\partial y}}
 from its coordinate components.
 }

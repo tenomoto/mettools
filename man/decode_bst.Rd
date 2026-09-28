@@ -15,4 +15,17 @@ A named list of data frames, where each element contains track data for a tropic
 \description{
 Reads and parses the text connection extracted from the Best Track zip file.
 }
-\keyword{internal}
+\examples{
+\dontrun{
+con <- file("bst2026.txt", open = "r", encoding = "Shift-JIS")
+bst_data <- decode_bst(con)
+close(con)
+
+if (file.exists("bst2026.txt")) {
+  con <- file("bst2026.txt", open = "r", encoding = "Shift-JIS")
+  bst_data <- decode_bst(con)
+  close(con)
+  summary(bst_data)
+}
+}
+}

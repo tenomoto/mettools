@@ -7,22 +7,22 @@
 qvector(z, T, dx, dy = dx, lat, plev)
 }
 \arguments{
-\item{z}{A numeric matrix of geopotential height (\eqn{m}) where rows index 
+\item{z}{A numeric matrix of geopotential height (\eqn{m}) where rows index
 longitudes (\eqn{i}) and columns index latitudes (\eqn{j}).}
 
-\item{T}{A numeric matrix of temperature (\eqn{K}) with the same dimensions 
+\item{T}{A numeric matrix of temperature (\eqn{K}) with the same dimensions
 as \code{z}.}
 
-\item{dx}{A numeric scalar representing the grid spacing along the X-axis 
+\item{dx}{A numeric scalar representing the grid spacing along the X-axis
 (longitudinal distance in meters).}
 
-\item{dy}{A numeric scalar representing the grid spacing along the Y-axis 
+\item{dy}{A numeric scalar representing the grid spacing along the Y-axis
 (latitudinal distance in meters). Defaults to \code{dx}.}
 
-\item{lat}{A numeric vector containing the latitudes (\code{degrees_north}) 
+\item{lat}{A numeric vector containing the latitudes (\code{degrees_north})
 corresponding to the columns (\eqn{j}) of \code{z}.}
 
-\item{plev}{A numeric scalar representing the pressure level operating 
+\item{plev}{A numeric scalar representing the pressure level operating
 strictly in Pascals (\eqn{Pa}).}
 }
 \value{
@@ -32,21 +32,21 @@ A named list containing three 2D matrices matching the dimensions of \code{z}:
 \item{div}{Matrix of the divergence of the Q-vector (\eqn{K m^{-2} s^{-1}}).}
 }
 \description{
-This function computes the components of the Q-vector (\eqn{Q_x}, \eqn{Q_y}) 
-and its spatial divergence (\eqn{\nabla \cdot \mathbf{Q}}) from 2D geopotential 
-height and temperature fields on a standard longitude-latitude grid using 
+This function computes the components of the Q-vector (\eqn{Q_x}, \eqn{Q_y})
+and its spatial divergence (\eqn{\nabla \cdot \mathbf{Q}}) from 2D geopotential
+height and temperature fields on a standard longitude-latitude grid using
 second-order \eqn{O(h^2)} accurate finite differences.
 }
 \details{
-The Q-vector components are calculated under the geostrophic approximation 
+The Q-vector components are calculated under the geostrophic approximation
 following Hoskins et al. (1978):
 \deqn{Q_x = -\frac{R_d}{p} \left( \frac{\partial u_g}{\partial x}\frac{\partial T}{\partial x} + \frac{\partial v_g}{\partial x}\frac{\partial T}{\partial y} \right)}
 \deqn{Q_y = -\frac{R_d}{p} \left( \frac{\partial u_g}{\partial y}\frac{\partial T}{\partial x} + \frac{\partial v_g}{\partial y}\frac{\partial T}{\partial y} \right)}
-Where \eqn{u_g} and \eqn{v_g} are the geostrophic wind components computed 
-internally using \code{grad()}, \eqn{R_d} is the dry gas constant, and \eqn{p} 
-is the pressure level (\code{plev}). 
+Where \eqn{u_g} and \eqn{v_g} are the geostrophic wind components computed
+internally using \code{grad()}, \eqn{R_d} is the dry gas constant, and \eqn{p}
+is the pressure level (\code{plev}).
 
-The latitude vector is automatically broadcasted as columns across the grid using 
+The latitude vector is automatically broadcasted as columns across the grid using
 \code{byrow = TRUE} to ensure precise mapping with the longitudinal row profiles.
 }
 \examples{
@@ -56,6 +56,6 @@ q_diag <- qvector(z = hgt_matrix, T = tmp_matrix, dx = 1e5, lat = lats, plev = 5
 }
 }
 \references{
-Hoskins, B. J., I. Draghici, and H. C. Davies, 1978: A new look at the \eqn{\omega}-equation. 
+Hoskins, B. J., I. Draghici, and H. C. Davies, 1978: A new look at the \eqn{\omega}-equation.
 \emph{Quart. J. Roy. Meteor. Soc.}, \strong{104}, 31-38.
 }

@@ -15,7 +15,7 @@ cshift(n, k)
 A vector of length \code{n} containing the shifted indices wrapped within range \code{1:n}.
 }
 \description{
-A utility function to compute shifted matrix indices for periodic/cyclic 
+A utility function to compute shifted matrix indices for periodic/cyclic
 boundary conditions.
 }
 \keyword{internal}

@@ -7,13 +7,13 @@
 rsmc_tokyo_bst(destfile = NA)
 }
 \arguments{
-\item{destfile}{An optional character string specifying where to save the downloaded zip file. If `NA` (default), the file is not saved permanently.}
+\item{destfile}{An optional character string specifying where to save the downloaded zip file. If \code{NA} (default), the file is not saved permanently.}
 }
 \value{
 A named list of data frames containing track data for all available tropical cyclones.
 }
 \description{
-Downloads the complete Best Track dataset (`bst_all.zip`) from the Japan Meteorological Agency (JMA),
+Downloads the complete Best Track dataset (\code{bst_all.zip}) from the Japan Meteorological Agency (JMA),
 extracts the text file, and parses it into a structured list of data frames for all available storms.
 }
 \examples{

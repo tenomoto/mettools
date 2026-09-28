@@ -16,7 +16,7 @@ condensation temperature K
 }
 \description{
 Calculate dew point temperature
-    Bolton (1980)
+Bolton (1980)
 }
 \examples{
 t.cond <- calc.condtemp(300, 2000)

@@ -18,7 +18,7 @@ potential temperature K
 }
 \description{
 Calculate potential temperature
-    Bolton (1980)
+Bolton (1980)
 }
 \examples{
 theta <- calc.theta(300, 0.01, 850e2)

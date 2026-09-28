@@ -3,7 +3,7 @@
 \name{calc.thetaes}
 \alias{calc.thetaes}
 \title{Calculate saturated equivalent potential temperature
-    Bolton (1980)}
+Bolton (1980)}
 \usage{
 calc.thetaes(T, p)
 }
@@ -17,7 +17,7 @@ saturated equivalent potential temperature K
 }
 \description{
 Calculate saturated equivalent potential temperature
-    Bolton (1980)
+Bolton (1980)
 }
 \examples{
 thetaes <- calc.thetaes(300, 1000e2)

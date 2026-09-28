@@ -11,17 +11,17 @@ deriv_O2(f, h, axis = "x", cyclic = FALSE)
 
 \item{h}{A numeric scalar representing the grid spacing along the chosen axis.}
 
-\item{axis}{A character string specifying the dimension to differentiate. 
+\item{axis}{A character string specifying the dimension to differentiate.
 Must be either \code{"x"} (rows) or \code{"y"} (columns). Defaults to \code{"x"}.}
 
-\item{cyclic}{A logical scalar. If \code{TRUE}, periodic boundary conditions are applied via 
+\item{cyclic}{A logical scalar. If \code{TRUE}, periodic boundary conditions are applied via
 \code{\link{cshift}}. If \code{FALSE}, asymmetric one-sided boundary stencils are applied.}
 }
 \value{
 A numeric matrix of the same dimensions as \code{f} containing the computed partial derivative.
 }
 \description{
-Computes the first derivative of a 2D matrix field along a chosen axis 
-using centered \eqn{O(h^2)} differences in the interior and one-sided 3-point \eqn{O(h^2)} 
+Computes the first derivative of a 2D matrix field along a chosen axis
+using centered \eqn{O(h^2)} differences in the interior and one-sided 3-point \eqn{O(h^2)}
 schemes at the non-cyclic boundaries.
 }

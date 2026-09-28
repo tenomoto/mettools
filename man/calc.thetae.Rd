@@ -18,7 +18,7 @@ equivalent potential temperature K
 }
 \description{
 Calculate equivalent potential temperature
-    Bolton (1980)
+Bolton (1980)
 }
 \examples{
 thetae <- calc.thetae(300, 1000, 850e2)
